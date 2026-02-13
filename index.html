@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NÖM.at - Niederösterreichische Machrichten | Sonderausgabe Lengenfeld</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: "Trebuchet MS", sans-serif; background-color: #f4f4f4; color: #333; }
+
+        .page { width: 100%; max-width: 960px; margin: 0 auto; background: #fff; border: 1px solid #ddd; }
+
+        /* ---- Masthead / Zeitungskopf ---- */
+        .masthead { background: #c0000e; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+        .masthead-logo { height: 52px; }
+        .masthead-right { text-align: right; color: #fff; font-size: 12px; line-height: 1.5; }
+        .masthead-right strong { font-size: 14px; }
+
+        /* ---- Ausgabe-Leiste ---- */
+        .edition-bar { background: #222; color: #ccc; font-size: 12px; padding: 6px 15px; display: flex; justify-content: space-between; align-items: center; }
+        .edition-bar a { color: #ffd600; text-decoration: none; font-weight: bold; }
+        .edition-bar a:hover { text-decoration: underline; }
+        .ticker { overflow: hidden; flex: 1; margin-left: 15px; white-space: nowrap; }
+        .ticker span { display: inline-block; animation: scroll-left 22s linear infinite; color: #fff; }
+        @keyframes scroll-left { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* ---- Hauptbereich ---- */
+        .content { padding: 20px 20px 10px; }
+
+        /* ---- Sonderbanner ---- */
+        .special-banner { background: #c0000e; color: #fff; text-align: center; padding: 10px 15px; font-size: 20px; font-weight: bold; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px; }
+
+        /* ---- Aufmacher (Hauptartikel) ---- */
+        .lead-article { border-bottom: 3px solid #c0000e; padding-bottom: 25px; margin-bottom: 25px; }
+        .lead-article a { text-decoration: none; color: inherit; display: block; }
+        .lead-article a:hover .lead-title { color: #c0000e; }
+        .lead-label { background: #c0000e; color: #fff; padding: 3px 10px; font-weight: bold; text-transform: uppercase; font-size: 12px; display: inline-block; margin-bottom: 12px; }
+        .lead-image { width: 100%; height: 340px; object-fit: cover; display: block; margin-bottom: 15px; }
+        .lead-title { font-size: 34px; line-height: 1.2; margin-bottom: 10px; transition: color 0.2s; }
+        .lead-meta { font-size: 12px; color: #999; margin-bottom: 10px; }
+        .lead-teaser { font-size: 17px; line-height: 1.5; color: #444; border-left: 4px solid #c0000e; padding-left: 15px; }
+
+        /* ---- Zweispaltige Artikel ---- */
+        .two-col { display: flex; gap: 20px; margin-bottom: 25px; }
+        .two-col .article-card { flex: 1; border: 1px solid #e0e0e0; transition: box-shadow 0.2s; }
+        .two-col .article-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.1); }
+        .two-col .article-card a { text-decoration: none; color: inherit; display: block; }
+        .two-col .article-card a:hover .card-title { color: #c0000e; }
+        .card-image { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .card-body { padding: 15px; }
+        .card-label { background: #c0000e; color: #fff; padding: 2px 8px; font-weight: bold; text-transform: uppercase; font-size: 11px; display: inline-block; margin-bottom: 8px; }
+        .card-title { font-size: 20px; line-height: 1.25; margin-bottom: 8px; transition: color 0.2s; }
+        .card-meta { font-size: 11px; color: #999; margin-bottom: 8px; }
+        .card-teaser { font-size: 14px; color: #555; line-height: 1.45; }
+
+        /* ---- Trennlinie mit Text ---- */
+        .section-divider { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; }
+        .section-divider hr { flex: 1; border: none; border-top: 1px solid #ddd; }
+        .section-divider span { font-size: 13px; color: #999; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; }
+
+        /* ---- Zitat-Banner ---- */
+        .quote-banner { background: #fffde7; border-top: 3px solid #ffd600; border-bottom: 3px solid #ffd600; padding: 20px; margin-bottom: 25px; text-align: center; }
+        .quote-banner blockquote { font-style: italic; font-size: 18px; line-height: 1.5; color: #555; max-width: 700px; margin: 0 auto; }
+        .quote-banner cite { display: block; margin-top: 8px; font-size: 13px; color: #999; font-style: normal; }
+
+        /* ---- Footer ---- */
+        .footer { background: #333; color: #fff; padding: 20px; text-align: center; font-size: 12px; }
+        .footer a { color: #ffd600; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* ---- MOBILE ---- */
+        @media (max-width: 640px) {
+            .page { border: none; }
+
+            .masthead { padding: 12px 15px; }
+            .masthead-logo { height: 36px; }
+            .masthead-right { font-size: 11px; }
+            .masthead-right strong { font-size: 12px; }
+
+            .edition-bar { padding: 6px 12px; font-size: 11px; }
+
+            .content { padding: 15px 12px 10px; }
+
+            .special-banner { font-size: 14px; letter-spacing: 1px; padding: 10px 10px; }
+
+            .lead-image { height: 200px; }
+            .lead-title { font-size: 22px; }
+            .lead-teaser { font-size: 15px; padding-left: 12px; }
+
+            .two-col { flex-direction: column; gap: 15px; }
+            .card-image { height: 180px; }
+            .card-title { font-size: 18px; }
+
+            .quote-banner { padding: 15px 12px; }
+            .quote-banner blockquote { font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- Zeitungskopf -->
+    <header class="masthead">
+        <img src="noem.jpg" alt="NÖM Logo" class="masthead-logo">
+        <div class="masthead-right">
+            <strong>Sonderausgabe Lengenfeld</strong><br>
+            Februar 2026 | Waldviertel
+        </div>
+    </header>
+
+    <!-- Ausgabe-Leiste mit Ticker -->
+    <div class="edition-bar">
+        <span>Dienstag, 11. Februar 2026</span>
+        <div class="ticker">
+            <span>+++ EILMELDUNG: Sittenwächter schlägt erneut zu – Lengenfeld in Aufruhr – Elch Emil zum Ehrenbürger nominiert +++</span>
+        </div>
+    </div>
+
+    <div class="content">
+
+        <!-- Sonderbanner -->
+        <div class="special-banner">Sonderausgabe: Der Sittenwächter von Lengenfeld</div>
+
+        <!-- ============ AUFMACHER ============ -->
+        <article class="lead-article">
+            <a href="Emil.html">
+                <span class="lead-label">Teil 1 – Wie alles begann</span>
+                <img src="Pofen.png" alt="Elch Emil im Festzelt" class="lead-image">
+                <h1 class="lead-title">Sittenwächter im Zelt: Anzeige gegen rauchenden Elch sorgt für Kopfschütteln</h1>
+                <div class="lead-meta">09. Februar 2026 | Von: Paparazzo Paul (Exklusiv-Reporter)</div>
+                <p class="lead-teaser">
+                    Erst heldenhaft im Gatsch, dann im Visier der Paragraphen-Reiter: Während die Lengenfelder Florianis nach dem Platzregen den Ort retteten, sorgte ein „besorgter Zeitgenosse" beim Fest für eine Anzeige. Der Vorwurf: Ein Elch habe im Festzelt eine Tschick geraucht.
+                </p>
+            </a>
+        </article>
+
+        <!-- Trennlinie -->
+        <div class="section-divider">
+            <hr><span>Die Serie geht weiter</span><hr>
+        </div>
+
+        <!-- ============ ZWEI WEITERE ARTIKEL ============ -->
+        <div class="two-col">
+
+            <!-- Strafzettel-Artikel -->
+            <article class="article-card">
+                <a href="Strafzettel.html">
+                    <img src="autogate.png" alt="Elch am Feuerwehrauto" class="card-image">
+                    <div class="card-body">
+                        <span class="card-label">Teil 2 – Der nächste Streich</span>
+                        <h2 class="card-title">Strafzettel-Skandal: Feuerwehr&shy;auto während Hochwasser&shy;einsatz beanstandet</h2>
+                        <div class="card-meta">10. Februar 2026 | Von: Paparazzo Paul</div>
+                        <p class="card-teaser">
+                            Nur einen Tag nach der Elch-Affäre sorgt der Sittenwächter für den nächsten Aufreger: Ein handgeschriebener Strafzettel am Tanklöschfahrzeug – beanstandet wegen „ordnungswidrigen Parkens auf einer Grünfläche". Während des Einsatzes.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+            <!-- Bierkrug-Artikel -->
+            <article class="article-card">
+                <a href="Bierkrug.html">
+                    <img src="masskruggate.png" alt="Elch beim Bier" class="card-image">
+                    <div class="card-body">
+                        <span class="card-label">Teil 3 – Der dritte Streich</span>
+                        <h2 class="card-title">Krügerl-Gate: Sittenwächter vermisst EU-Eichstrich am Festbier</h2>
+                        <div class="card-meta">11. Februar 2026 | Von: Paparazzo Paul</div>
+                        <p class="card-teaser">
+                            Mit einem Messschieber bewaffnet rückte er dem Festbier zu Leibe: 47 vermessene Krügerl, drei Excel-Tabellen und eine Anzeige wegen 0,06% Abweichung. Die Feuerwehr reagiert mit einem Sondereinsatz der besonderen Art.
+                        </p>
+                    </div>
+                </a>
+            </article>
+
+        </div>
+
+        <!-- Zitat-Banner -->
+        <div class="quote-banner">
+            <blockquote>
+                „Gegen das Wasser haben wir gewonnen, gegen die Paragraphen auch – wir löschen halt alles, was brennt oder nervt."
+            </blockquote>
+            <cite>— Die Feuerwehr Lengenfeld</cite>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2026 Niederösterreichische Machrichten | Sonderausgabe Lengenfeld | Alle Rechte beim Humor geblieben.
+    </footer>
+
+</div>
+
+</body>
+</html>
